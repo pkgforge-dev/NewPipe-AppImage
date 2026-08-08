@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=NewPipe
+Exec=newpipe
+TryExec=newpipe
+Icon=newpipe
+Comment=A libre lightweight streaming front-end for Android.
+

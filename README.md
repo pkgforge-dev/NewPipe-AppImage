@@ -1,19 +1,19 @@
 <div align="center">
 
-# TEMPLATE-ANDROID-AppImage 🐧
+# NewPipe-AppImage 🐧
 
-[![GitHub Downloads](https://img.shields.io/github/downloads/pkgforge-dev/TEMPLATE-ANDROID-AppImage/total?logo=github&label=GitHub%20Downloads)](https://github.com/pkgforge-dev/TEMPLATE-ANDROID-AppImage/releases/latest)
-[![CI Build Status](https://github.com/pkgforge-dev/TEMPLATE-ANDROID-AppImage/actions/workflows/appimage.yml/badge.svg)](https://github.com/pkgforge-dev/TEMPLATE-ANDROID-AppImage/releases/latest)
-[![Latest Stable Release](https://img.shields.io/github/v/release/pkgforge-dev/TEMPLATE-ANDROID-AppImage)](https://github.com/pkgforge-dev/TEMPLATE-ANDROID-AppImage/releases/latest)
+[![GitHub Downloads](https://img.shields.io/github/downloads/pkgforge-dev/NewPipe-AppImage/total?logo=github&label=GitHub%20Downloads)](https://github.com/pkgforge-dev/NewPipe-AppImage/releases/latest)
+[![CI Build Status](https://github.com/pkgforge-dev/NewPipe-AppImage/actions/workflows/appimage.yml/badge.svg)](https://github.com/pkgforge-dev/NewPipe-AppImage/releases/latest)
+[![Latest Stable Release](https://img.shields.io/github/v/release/pkgforge-dev/NewPipe-AppImage)](https://github.com/pkgforge-dev/NewPipe-AppImage/releases/latest)
 
 <p align="center">
-  <img src="https://github.com/pkgforge-dev.png" width="128" />
+  <img src="https://raw.githubusercontent.com/TeamNewPipe/NewPipe/89d2423692918653134e79a841d96e065175e976/assets/NP%20logo%20v2.svg" width="128" />
 </p>
 
 
 | Latest Stable Release | Upstream URL |
 | :---: | :---: |
-| [Click here](https://github.com/pkgforge-dev/TEMPLATE-ANDROID-AppImage/releases/latest) | [Click here](https://github.com/pkgforge-dev/Anylinux-AppImages) |
+| [Click here](https://github.com/pkgforge-dev/NewPipe-AppImage/releases/latest) | [Click here](https://github.com/TeamNewPipe/NewPipe) |
 
 </div>
 

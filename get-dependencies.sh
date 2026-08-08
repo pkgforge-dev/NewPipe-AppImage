@@ -19,8 +19,10 @@ set -eu
 # generate a ~/version file that contains the version of the .apk that was downloaded
 
 
-
-
+# lets pin version since the latest doesn't work at all with ATL
+_ver=v0.28.8
+wget https://github.com/TeamNewPipe/NewPipe/releases/download/"$_ver"/NewPipe_"$_ver".apk -O ./AppDir/apk/newpipe.apk
+echo "$_ver" > ~/version
 
 
 
@@ -30,7 +32,7 @@ set -eu
 # # # # # # # # # # # # # # # #
 # DO NOT EDIT BELOW THIS LINE #
 # # # # # # # # # # # # # # # #
-APK=$(set -- ./apk/*.apk; echo "$1")
+APK=$(set -- ./AppDir/apk/*.apk; echo "$1")
 if [ ! -f "$APK" ]; then
 	>&2 echo "ERROR: No .apk file found in './AppDir/apk'!"
 	exit 1

@@ -1,17 +1,16 @@
 #!/bin/sh
 
-set -eu
+set -e
 
 APK_TO_LAUNCH=$(set -- "$APPDIR"/apk/*.apk; echo "$1")
 ATL_APPIMAGE_PATH=${ATL_APPIMAGE_PATH:-${XDG_BIN_HOME:-$HOST_HOME/.local/bin}/android-translation-layer}
-ATL_APPIMAGE_SOURCE=${ATL_APPIMAGE_SOURCE:-pkgforge-dev/android_translation_layer-AppImage}
 
 _get_translation_layer() {
 	if [ -n "$ATL_APPIMAGE_SOURCE" ]; then
 		_link=$ATL_APPIMAGE_SOURCE
 	else
 		_link=$(download - "https://api.github.com/repos/pkgforge-dev/android_translation_layer-AppImage/releases/latest" \
-			| sed -e 's/[()",{} ]/\n/g' | grep -oi -m 1 "https://.*/.*-anylinux-$APPIMAGE_ARCH.AppImage$" )
+			| sed -e 's/[()",{} ]/\n/g' | grep -oi -m 1 "https://.*/.*-anylinux-$APPIMAGE_ARCH.AppImage$")
 	fi
 	>&2 echo "Downloading Android Translation Layer from: $_link"
 	mkdir -p "${ATL_APPIMAGE_PATH%/*}"
