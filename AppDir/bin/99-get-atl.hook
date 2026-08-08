@@ -12,9 +12,11 @@ _get_translation_layer() {
 		_link=$(download - "https://api.github.com/repos/pkgforge-dev/android_translation_layer-AppImage/releases/latest" \
 			| sed -e 's/[()",{} ]/\n/g' | grep -oi -m 1 "https://.*/.*-anylinux-$APPIMAGE_ARCH.AppImage$")
 	fi
+	notify -ni "Downloading... This might take a while."
 	>&2 echo "Downloading Android Translation Layer from: $_link"
 	mkdir -p "${ATL_APPIMAGE_PATH%/*}"
-	download "$ATL_APPIMAGE_PATH".tmp "$_link"
+	download "$ATL_APPIMAGE_PATH".tmp "$_link" || return 1
+	[ -s "$ATL_APPIMAGE_PATH".tmp ] || return 1
 	mv -f "$ATL_APPIMAGE_PATH".tmp "$ATL_APPIMAGE_PATH"
 	chmod +x "$ATL_APPIMAGE_PATH"
 }
