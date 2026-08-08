@@ -1,0 +1,36 @@
+#!/bin/sh
+
+set -eu
+
+APK_TO_LAUNCH=$(set -- "$APPDIR"/apk/*.apk; echo "$1")
+ATL_APPIMAGE_PATH=${ATL_APPIMAGE_PATH:-${XDG_BIN_HOME:-$HOST_HOME/.local/bin}/android-translation-layer}
+ATL_APPIMAGE_SOURCE=${ATL_APPIMAGE_SOURCE:-pkgforge-dev/android_translation_layer-AppImage}
+
+_get_translation_layer() {
+	if [ -n "$ATL_APPIMAGE_SOURCE" ]; then
+		_link=$ATL_APPIMAGE_SOURCE
+	else
+		_link=$(download - "https://api.github.com/repos/pkgforge-dev/android_translation_layer-AppImage/releases/latest" \
+			| sed -e 's/[()",{} ]/\n/g' | grep -oi -m 1 "https://.*/.*-anylinux-$APPIMAGE_ARCH.AppImage$" )
+	fi
+	>&2 echo "Downloading Android Translation Layer from: $_link"
+	mkdir -p "${ATL_APPIMAGE_PATH%/*}"
+	download "$ATL_APPIMAGE_PATH".tmp "$_link"
+	mv -f "$ATL_APPIMAGE_PATH".tmp "$ATL_APPIMAGE_PATH"
+	chmod +x "$ATL_APPIMAGE_PATH"
+}
+
+if [ ! -f "$APK_TO_LAUNCH" ]; then
+	>&2 echo "ERROR: Missing bundled .apk file in '$APPDIR/apk'!!!"
+	notify -de "Missing bundled .apk file in '$APPDIR/apk'!!!"
+	exit 1
+elif [ ! -x "$ATL_APPIMAGE_PATH" ]; then
+	if ! notify -dq "${APPIMAGE##*/} needs the Android Translation Layer to run the bundled .apk. Do you wish to download it now?"; then
+		exit 1
+	elif ! _get_translation_layer; then
+		notify -de "Something went wrong downloading Android Translation Layer from '$_link'"
+		exit 1
+	fi
+fi
+
+exec "$ATL_APPIMAGE_PATH" "$APK_TO_LAUNCH" "$@"
